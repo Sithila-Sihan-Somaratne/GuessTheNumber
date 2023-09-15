@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.GuessNumberFormController">
+   <Label alignment="CENTER" prefHeight="82.0" prefWidth="600.0" style="-fx-background-color: #004dcf;"
+          text="Guess The Number" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="29.0"/>
+      </font>
+   </Label>
+   <JFXTextField fx:id="txtGuess" layoutX="119.0" layoutY="153.0" prefHeight="33.0" prefWidth="200.0"
+                 promptText="Enter a number between 0 and 100"/>
+   <JFXButton layoutX="343.0" layoutY="157.0" onAction="#guessTheNumber" style="-fx-background-color: #fccb00;"
+              text="Guess">
+      <font>
+         <Font name="System Bold" size="15.0"/>
+      </font>
+   </JFXButton>
+   <JFXButton layoutX="423.0" layoutY="157.0" onAction="#refreshTheWindow" style="-fx-background-color: #347740;"
+              text="Refresh" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0"/>
+      </font>
+   </JFXButton>
+   <JFXButton layoutX="503.0" layoutY="347.0" onAction="#exit" style="-fx-background-color: #e35c5c;" text="Exit"
+              textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0"/>
+      </font>
+   </JFXButton>
+   <Label fx:id="txtOutput" alignment="CENTER" layoutX="56.0" layoutY="230.0" prefHeight="140.0" prefWidth="422.0">
+      <font>
+         <Font name="System Bold" size="32.0"/>
+      </font>
+   </Label>
+</AnchorPane>
