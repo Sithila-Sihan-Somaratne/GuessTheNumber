@@ -1,10 +1,7 @@
-package app;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Objects;
 
 public class AppInitializer extends Application {
@@ -17,8 +14,11 @@ public class AppInitializer extends Application {
     public void start(Stage stage) {
         stage.setResizable(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/guessNumberForm.fxml")))));
-        } catch (IOException e) {
+            System.err.close();
+            System.setErr(System.out);
+            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("view/guessNumberForm.fxml")))));
+            stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
