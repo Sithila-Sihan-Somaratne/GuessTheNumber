@@ -54,14 +54,14 @@ public class GuessNumberFormController {
                 txtOutput.setAlignment(Pos.CENTER);
                 buttonClick++;
                 if (buttonClick != 6) {
-                     checkTheGuessNumber(numberGuessAndGenerator);
+                    checkTheGuessNumber(numberGuessAndGenerator);
                 } else {
                     Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Sorry, you have exhausted 5 trials. The number was " + generatedNumber + ". \nDo you want to retry the game?", ButtonType.YES, ButtonType.NO).showAndWait();
                     if (buttonType.isPresent() && (buttonType.get() == ButtonType.YES)) {
-                            boolean bool = false;
-                            refreshTheWindow(bool);
-                            generatedNumber = r.nextInt(101);
-                            buttonClick = 0;
+                        boolean bool = false;
+                        refreshTheWindow(bool);
+                        generatedNumber = r.nextInt(101);
+                        buttonClick = 0;
                     }
                 }
             } catch (Exception e) {
