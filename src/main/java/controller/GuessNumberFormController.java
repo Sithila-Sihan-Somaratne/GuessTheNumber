@@ -9,8 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import dto.NumberGuessAndGenerator;
+import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -48,6 +50,7 @@ public class GuessNumberFormController {
                     new Alert(Alert.AlertType.ERROR, "Number should be greater than -1 and less than 101!").show();
                 }
                 points = Integer.parseInt(txtPoints.getText());
+                System.out.println(generatedNumber);
                 numberGuessAndGenerator.setGuessedNumber(Integer.parseInt(txtGuess.getText()));
                 numberGuessAndGenerator.setGeneratedNumber(generatedNumber);
                 txtOutput.setTextFill(Color.rgb(255, 255, 255));
@@ -74,14 +77,21 @@ public class GuessNumberFormController {
 
     private void checkTheGuessNumber(NumberGuessAndGenerator numberGuessAndGenerator) {
         if (numberGuessAndGenerator.getGuessedNumber() == numberGuessAndGenerator.getGeneratedNumber()) {
-            txtOutput.setStyle("-fx-background-color: #347740; -fx-font-weight: BOLD");
+            txtOutput.setBackground(Background.fill(Color.rgb(52,119,64)));
+            txtOutput.setStyle("-fx-font-weight: BOLD");
             txtOutput.setText("Great! You guessed the number! Now, try to guess the next one.");
             generatedNumber = r.nextInt(101);
             points = points + 3;
-            txtPoints.setText(String.valueOf(points));
-            txtMaxScore.setText(String.valueOf(points));
+            if(Objects.equals(txtPoints.getText(), txtMaxScore.getText())){
+                txtPoints.setText(String.valueOf(points));
+                txtMaxScore.setText(String.valueOf(points));
+            }else{
+                txtPoints.setText(String.valueOf(points));
+            }
             buttonClick = 0;
         } else {
+            txtOutput.setBackground(Background.fill(Color.rgb(227,92,92)));
+            txtOutput.setStyle("-fx-font-weight: BOLD");
             txtOutput.setStyle("-fx-background-color: #e35c5c; -fx-font-weight: BOLD");
             if (numberGuessAndGenerator.getGeneratedNumber() > numberGuessAndGenerator.getGuessedNumber()) {
                 txtOutput.setText("The number you tried to guess is too low. Please try again.");
