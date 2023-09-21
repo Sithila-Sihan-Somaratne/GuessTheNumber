@@ -104,16 +104,16 @@ public class GuessNumberFormController {
     @FXML
     void refreshTheWindow(ActionEvent ignoredEvent) {
         boolean b = btnRefresh.isHover();
-        System.out.println(b);
         refreshTheWindow(b);
     }
 
     private void refreshTheWindow(boolean isPressed) {
+        txtGuess.setText("");
+        txtOutput.setStyle("-fx-font-weight: BOLD");
+        txtOutput.setBackground(Background.fill(Color.rgb(255,255,255)));
+        txtOutput.setText("");
         if(!isPressed){
             txtPoints.setText("0");
-            txtGuess.setText("");
-            txtOutput.setStyle("-fx-background-color: #fff; -fx-font-weight: BOLD");
-            txtOutput.setText("");
         }
     }
 }
