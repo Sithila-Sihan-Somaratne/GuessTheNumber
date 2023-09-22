@@ -50,7 +50,6 @@ public class GuessNumberFormController {
                     new Alert(Alert.AlertType.ERROR, "Number should be greater than -1 and less than 101!").show();
                 }
                 points = Integer.parseInt(txtPoints.getText());
-                System.out.println(generatedNumber);
                 numberGuessAndGenerator.setGuessedNumber(Integer.parseInt(txtGuess.getText()));
                 numberGuessAndGenerator.setGeneratedNumber(generatedNumber);
                 txtOutput.setTextFill(Color.rgb(255, 255, 255));
@@ -104,6 +103,7 @@ public class GuessNumberFormController {
     @FXML
     void refreshTheWindow(ActionEvent ignoredEvent) {
         boolean b = btnRefresh.isHover();
+        buttonClick = 0;
         refreshTheWindow(b);
     }
 
