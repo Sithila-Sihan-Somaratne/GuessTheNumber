@@ -44,34 +44,31 @@ public class GuessNumberFormController {
     @FXML
     void guessTheNumber(ActionEvent ignoredEvent) {
         NumberGuessAndGenerator numberGuessAndGenerator = new NumberGuessAndGenerator();
-        while (true) {
-            try {
-                if (Integer.parseInt(txtGuess.getText()) > 100 || Integer.parseInt(txtGuess.getText()) < 0) {
-                    new Alert(Alert.AlertType.ERROR, "Number should be greater than -1 and less than 101!").show();
-                }
-                points = Integer.parseInt(txtPoints.getText());
-                numberGuessAndGenerator.setGuessedNumber(Integer.parseInt(txtGuess.getText()));
-                numberGuessAndGenerator.setGeneratedNumber(generatedNumber);
-                txtOutput.setTextFill(Color.rgb(255, 255, 255));
-                txtOutput.setAlignment(Pos.CENTER);
-                buttonClick++;
-                if (buttonClick != 6) {
-                    checkTheGuessNumber(numberGuessAndGenerator);
-                } else {
-                    Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Sorry, you have exhausted 5 trials. The number was " + generatedNumber + ". \nDo you want to retry the game?", ButtonType.YES, ButtonType.NO).showAndWait();
-                    if (buttonType.isPresent() && (buttonType.get() == ButtonType.YES)) {
-                        boolean bool = false;
-                        refreshTheWindow(bool);
-                        generatedNumber = r.nextInt(101);
-                        buttonClick = 0;
-                    }
-                }
-            } catch (Exception e) {
-                new Alert(Alert.AlertType.ERROR, "You didn't enter a number!").show();
+        try {
+            if (Integer.parseInt(txtGuess.getText()) > 100 || Integer.parseInt(txtGuess.getText()) < 0) {
+                new Alert(Alert.AlertType.ERROR, "Number should be greater than -1 and less than 101!").show();
+                return;
             }
-            break;
+            points = Integer.parseInt(txtPoints.getText());
+            numberGuessAndGenerator.setGuessedNumber(Integer.parseInt(txtGuess.getText()));
+            numberGuessAndGenerator.setGeneratedNumber(generatedNumber);
+            txtOutput.setTextFill(Color.rgb(255, 255, 255));
+            txtOutput.setAlignment(Pos.CENTER);
+            buttonClick++;
+            if (buttonClick != 6) {
+                checkTheGuessNumber(numberGuessAndGenerator);
+            } else {
+                Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Sorry, you have exhausted 5 trials. The number was " + generatedNumber + ". \nDo you want to retry the game?", ButtonType.YES, ButtonType.NO).showAndWait();
+                if (buttonType.isPresent() && (buttonType.get() == ButtonType.YES)) {
+                    boolean bool = false;
+                    refreshTheWindow(bool);
+                    generatedNumber = r.nextInt(101);
+                    buttonClick = 0;
+                }
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "You didn't enter a number or the number is too huge!").show();
         }
-
     }
 
     private void checkTheGuessNumber(NumberGuessAndGenerator numberGuessAndGenerator) {
